@@ -27,21 +27,21 @@
 #include "lcd.h"
 
 #define RAM_START       0x0000
-#define RAM_END         0x7eff
+#define RAM_END         0xbfff
 
-#define ROM_START       0x8000
+#define ROM_START       0xe000
 #define ROM_END         0xffff
-#define ROM_MASK        (ROM_START - 1)
+#define ROM_MASK        ~ROM_START
 
-#define IO_PAGE          0x7f00
-#define IO_PAGE_MASK     0x00ff
+#define IO_PAGE          0xc000
+#define IO_PAGE_MASK     0x0fff
 
 #define TMS9918_FPS      60
-#define TMS9918_DAT_ADDR 0x10
-#define TMS9918_REG_ADDR 0x11
+#define TMS9918_DAT_ADDR 0xf00
+#define TMS9918_REG_ADDR 0xf01
 
-// currently keyboard and NES use the same port (I haven't built separate hardware... yet)
-// NES controller is the default.  Use the --keyboard command-line to enable the keyboard instead
+ // currently keyboard and NES use the same port (I haven't built separate hardware... yet)
+ // NES controller is the default.  Use the --keyboard command-line to enable the keyboard instead
 #define NES_IO_PORT      0x81  
 #define KB_IO_PORT       0x81
 
@@ -58,7 +58,6 @@
 #define NES_SELECT      0b00000100
 #define NES_B           0b00000010
 #define NES_A           0b00000001
-
 
 
 char winTitleBuffer[_MAX_PATH];
